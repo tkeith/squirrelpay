@@ -198,9 +198,12 @@ function Home() {
     return (
       <Container>
         <div className="flex justify-center items-center min-h-screen">
-          <div className="bg-white rounded-md shadow-md p-6 flex flex-col items-center space-y-4">
+          <div className="bg-white rounded-md shadow-md p-16 flex flex-col items-center space-y-4">
             <img src="./logo-wide.png" alt="Logo" className="w-96" />
-            <h1 className="text-2xl font-semibold">Connect Your Wallet</h1>
+            {/* <h1 className="text-xl font-semibold text-gray-400">
+              Connect your wallet
+            </h1> */}
+            <div className="h-3" />
             {/* <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={connect}>
               Connect
             </button> */}
