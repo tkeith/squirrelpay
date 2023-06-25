@@ -84,7 +84,7 @@ const WhiteBox = styled.div`
   box-shadow: 0 4px 33px rgba(168, 198, 207, 0.15);
   background-color: #fff;
   padding: 36px;
-  max-width: 590px;
+  max-width: 650px;
   border-radius: 10px;
   margin: 40px auto 0;
   box-sizing: border-box;
@@ -151,7 +151,7 @@ function Home() {
     return JSON.stringify(attestation);
   };
 
-  const depositFunds = async (amount: BigInt, attestation: string) => {
+  const depositFunds = async (amount: number, attestation: string) => {
     try {
       const tokenAddress = "0xd6b9a0b261dda05ba06dc51821c3ba12318d9ae1";
       const squirrelPayContractAddress =
@@ -175,7 +175,7 @@ function Home() {
         signer!
       );
 
-      const depositTx = await contract.deposit(attestation, 1);
+      const depositTx = await contract.deposit(attestation, amount);
       console.log("Transaction ID:", depositTx.hash);
       setTxnId(depositTx.hash);
     } catch (error) {
@@ -191,7 +191,7 @@ function Home() {
       purpose,
       address as string
     );
-    depositFunds(BigInt(amount), attestation);
+    depositFunds(Number(amount), attestation);
   };
 
   if (status !== "connected") {
@@ -266,7 +266,13 @@ function Home() {
             >
               Submit
             </button>
-            {txnId && <p className="mt-4">Transaction ID: {txnId}</p>}
+            {txnId && (
+              <p className="mt-4">
+                <a href={"https://zkevm.polygonscan.com/tx/" + txnId}>
+                  Transaction ID: {txnId}
+                </a>
+              </p>
+            )}
           </form>
           <div className="h-8" />
           <TransferBeneficialOwnership />
@@ -359,7 +365,13 @@ const TransferBeneficialOwnership = () => {
         >
           Submit
         </button>
-        {txnId && <p className="mt-4">Transaction ID: {txnId}</p>}
+        {txnId && (
+          <p className="mt-4">
+            <a href={"https://zkevm.polygonscan.com/tx/" + txnId}>
+              Transaction ID: {txnId}
+            </a>
+          </p>
+        )}
       </form>
     </div>
   );
@@ -431,7 +443,13 @@ const WithdrawWithAttestation = () => {
         >
           Submit
         </button>
-        {txnId && <p className="mt-4">Transaction ID: {txnId}</p>}
+        {txnId && (
+          <p className="mt-4">
+            <a href={"https://zkevm.polygonscan.com/tx/" + txnId}>
+              Transaction ID: {txnId}
+            </a>
+          </p>
+        )}
       </form>
     </div>
   );
