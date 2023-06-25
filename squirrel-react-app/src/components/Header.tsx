@@ -148,7 +148,7 @@ export function Header() {
 
   return (
     <>
-      <Outer>
+      {/* <Outer>
         <Container>
           <MainNavigation>
             <LogoContainer>
@@ -184,7 +184,7 @@ export function Header() {
             </Right>
           </MainNavigation>
         </Container>
-      </Outer>
+      </Outer> */}
     </>
   );
 }

@@ -42,7 +42,7 @@ contract SquirrelPay {
 
   event PrivateWithdrawal(uint256 batchId, address receiver, uint256 amount, string meta);
 
-  ERC20 constant sDAI = ERC20(0xd6B9A0B261DDA05ba06DC51821C3Ba12318d9Ae1); // SDAI ON ZKEVM
+  ERC20 public constant sDAI = ERC20(0xd6B9A0B261DDA05ba06DC51821C3Ba12318d9Ae1); // SDAI ON ZKEVM
   // ERC20 public constant sDAI = ERC20(0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984); // UNI ON SEPOLIA
 
   constructor() {}

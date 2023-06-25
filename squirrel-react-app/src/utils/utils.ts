@@ -70,14 +70,6 @@ export async function getAddressForENS(name: string) {
   return await provider.resolveName(name);
 }
 
-export async function getENSName(address: string) {
-  const provider = new ethers.providers.StaticJsonRpcProvider(
-    `https://eth-mainnet.g.alchemy.com/v2/${process.env.REACT_APP_ALCHEMY_API_KEY}`,
-    "mainnet"
-  );
-  return await provider.lookupAddress(address);
-}
-
 export async function getAttestation(uid: string): Promise<Attestation | null> {
   const response = await axios.post<AttestationResult>(
     "https://sepolia.easscan.org/graphql",
