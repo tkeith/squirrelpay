@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -e
+cd `dirname $0`
+
+echo -n "Network: "
+read NW
+OUTPUT=$(npx hardhat run --network $NW scripts/deploy.ts)
+echo $OUTPUT; ADDR=$(echo "${OUTPUT}" | tail -n 1 | awk '{print $NF}')
+echo "Address: $ADDR"
+while true; do
+  if npx hardhat verify --network $NW $ADDR ; then
+    echo 'SUCCESS'
+    exit 0
+  fi
+  echo 'RETRYING VERIFICATION IN 1 SECOND...'
+  sleep 1
+done

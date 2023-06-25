@@ -1,4 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
+
+// Written by: trevor@tk.co
+
 pragma solidity ^0.8.18;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
@@ -9,7 +12,7 @@ contract SquirrelFractionalAttestationToken is ERC20 {
   SquirrelPay public squirrelPay;
   uint256 public batchId;
 
-  constructor(SquirrelPay _squirrelPay, uint256 _batchId, uint256 _supply) ERC20(string.concat("SquirrelPay Batch ", Strings.toString(_batchId)), "SFAT") {
+  constructor(SquirrelPay _squirrelPay, uint256 _batchId, uint256 _supply) ERC20(string.concat("SquirrelPay Batch #", Strings.toString(_batchId)), "SFAT") {
     squirrelPay = _squirrelPay;
     batchId = _batchId;
     _mint(msg.sender, _supply);
@@ -29,7 +32,7 @@ contract SquirrelPay {
     uint256 unwithdrawnAmount;
   }
 
-  uint256 numberOfBatches = 0;
+  uint256 public numberOfBatches = 0;
   mapping(uint256 => Batch) public batches;
   mapping(uint256 => mapping(address => uint256)) public beneficiaryBalance;
 
@@ -39,7 +42,8 @@ contract SquirrelPay {
 
   event PrivateWithdrawal(uint256 batchId, address receiver, uint256 amount, string meta);
 
-  ERC20 constant sDAI = ERC20(0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063);
+  ERC20 constant sDAI = ERC20(0xd6B9A0B261DDA05ba06DC51821C3Ba12318d9Ae1); // SDAI ON ZKEVM
+  // ERC20 public constant sDAI = ERC20(0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984); // UNI ON SEPOLIA
 
   constructor() {}
 
