@@ -48,7 +48,7 @@ const QR = styled(FaQrcode)`
 `;
 
 const LogoImage = styled.img`
-  width: 40px;
+  width: 240px;
   margin-right: 4px;
 `;
 
@@ -96,24 +96,19 @@ const LogoText = styled.span`
   white-space: nowrap;
 `;
 
-type MenuItemProps = {
-  active: boolean;
-};
-
-const MenuItem = styled.div<MenuItemProps>`
-  background-color: ${({ active }) => (active ? "#F1F4F9" : "#FFF")};
+const MenuItem = styled.a`
   border-radius: 20px;
   padding: 12px 20px;
   font-family: "Montserrat", serif;
   font-style: normal;
-  font-weight: ${({ active }) => (active ? "700" : "500")};
+  font-weight: "000";
   font-size: 16px;
   line-height: 20px;
   cursor: pointer;
   color: #333342;
 
   :hover {
-    background-color: ${({ active }) => (active ? "#F1F4F9" : "#f1f4f966")};
+    background-color: "#F1F4F9";
   }
 `;
 
@@ -128,22 +123,6 @@ export function Header() {
   const { address } = useAccount();
   const location = useLocation();
 
-  let menuItems: MenuItemType[] = [
-    {
-      title: "Attest",
-      onClick: () => navigate("/"),
-      path: "/",
-    },
-  ];
-
-  if (address) {
-    menuItems.push({
-      title: "Connections",
-      onClick: () => navigate("/connections"),
-      path: "/connections",
-    });
-  }
-
   invariant(activeChainConfig, "activeChainConfig is not set");
 
   return (
@@ -153,28 +132,17 @@ export function Header() {
           <MainNavigation>
             <LogoContainer>
               <Logo onClick={() => navigate("/")}>
-                <LogoImage src="/logo.png" />
-                <LogoText>METIRL</LogoText>
+                <LogoImage src="/logo-wide.png" />
               </Logo>
             </LogoContainer>
             <Left>
               <Links>
-                {address && (
-                  <QR
-                    size={20}
-                    color={"#BD9EFF"}
-                    onClick={() => navigate("/qr")}
-                  />
-                )}
-                {menuItems.map((menuItem, i) => (
-                  <MenuItem
-                    key={i}
-                    onClick={menuItem.onClick}
-                    active={menuItem.path === location.pathname}
-                  >
-                    {menuItem.title}
-                  </MenuItem>
-                ))}
+                <MenuItem
+                  href="https://madriver.notion.site/SquirrelPay-private-payroll-f186ace60a724222848bf59763c4d907?pvs=4"
+                  className="topBarLink"
+                >
+                  Project information
+                </MenuItem>
               </Links>
 
               <MobileLinks></MobileLinks>

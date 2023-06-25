@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "SquirrelPay",
+  "name": "SquirrelPay - Privacy-preserving payroll",
   "icons": [
     {
       "src": "favicon.ico",
